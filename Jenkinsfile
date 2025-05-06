@@ -1,8 +1,9 @@
 pipeline {
-    agent docker {
+    agent {
+        docker {
             image 'python:3.10'
         }
-
+    }
     environment {
         VENV = 'venv'
     }
