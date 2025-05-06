@@ -34,8 +34,9 @@ pipeline {
         success {
             script {
                 def payload = [
-                    content: " BUILD SUCCESS on `${env.BRANCH_NAME}`\nURL: ${env.BUILD_URL}"
+                    content: " BUILD SUCCESS on branch\nURL: ${env.BUILD_URL ?: 'URL_UNKNOWN'}"
                 ]
+
                 httpRequest(
                     httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
@@ -47,7 +48,7 @@ pipeline {
         failure {
             script {
                 def payload = [
-                    content: " BUILD FAILED on `${env.BRANCH_NAME}`\nURL: ${env.BUILD_URL}"
+                    content: " BUILD FAILED on branch\nURL: ${env.BUILD_URL ?: 'URL_UNKNOWN'}"
                 ]
                 httpRequest(
                     httpMode: 'POST',
