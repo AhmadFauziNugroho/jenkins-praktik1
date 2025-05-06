@@ -5,6 +5,10 @@ pipeline {
         }
     }
 
+    environment {
+        VENV = 'venv'
+    }
+
     stages {
         stage('Install Dependencies') {
             steps {
