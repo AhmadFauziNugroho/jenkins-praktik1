@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh '''
                 . $VENV/bin/activate
-                'pytest test_app.py
+                pytest test_app.py
                 '''
             }
         }
