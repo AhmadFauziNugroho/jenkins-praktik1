@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                anyof {
+                anyOf {
                     branch 'main'
                     branch pattern: "release/.*", comparator: "REGEXP"
                 }
@@ -34,7 +34,7 @@ pipeline {
         success {
             script {
                 def payload = [
-                    content: " BUILD SUCCESS on branch\nURL: ${env.BUILD_URL ?: 'URL_UNKNOWN'}"
+                    content: " BUILD SUCCESS on branch\nURL: ${env.BUILD_URL}"
                 ]
 
                 httpRequest(
@@ -48,7 +48,7 @@ pipeline {
         failure {
             script {
                 def payload = [
-                    content: " BUILD FAILED on branch\nURL: ${env.BUILD_URL ?: 'URL_UNKNOWN'}"
+                    content: " BUILD FAILED on branch\nURL: ${env.BUILD_URL}"
                 ]
                 httpRequest(
                     httpMode: 'POST',
