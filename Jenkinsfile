@@ -1,6 +1,5 @@
 pipeline {
-    agent {
-        docker any {
+    agent any {
             image 'python:3.10'
         }
     }
